@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pápai Kocsmatúra</title>
+    <link rel="icon" type="image/png" href="beer-computer-icons-logo-png-favpng-h6LkAMCZc9aU4thj4spj8NSeR.jpg">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: 
+                radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.95) 100%), 
+                url('nikola-jovanovic-QGPmWrclELg-unsplash.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #f3e5ab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* KOCSMAKAPU DIZÁJN */
+        .gate-container {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(rgba(43, 22, 10, 0.98), rgba(20, 10, 5, 0.98));
+            padding: 5rem 4rem;
+            width: 90%;
+            max-width: 700px;
+            /* Boltíves kapu forma */
+            border-radius: 50% 50% 15px 15px / 25% 25% 15px 15px;
+            border: 12px solid #3d2314;
+            outline: 4px solid #d4af37;
+            box-shadow: 
+                0 0 100px rgba(0, 0, 0, 1), 
+                inset 0 0 60px rgba(0, 0, 0, 0.9),
+                0 20px 50px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        /* Kapu "pántok" (kovácsoltvas hatás) */
+        .gate-container::before, .gate-container::after {
+            content: "";
+            position: absolute;
+            height: 40px;
+            width: 100px;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        .gate-container::before { top: 40%; left: -30px; border-radius: 5px 0 0 5px; }
+        .gate-container::after { top: 40%; right: -30px; border-radius: 0 5px 5px 0; }
+
+        .roman-number {
+            display: block;
+            font-size: 5rem;
+            color: #d4af37;
+            text-shadow: 3px 6px 10px #000;
+            margin-bottom: -10px;
+            font-weight: bold;
+            letter-spacing: 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #f3e5ab;
+            text-shadow: 2px 2px 4px #000;
+            border-bottom: 2px solid #d4af37;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        #countdown {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 10px;
+            border-radius: 10px;
+            min-width: 110px;
+            border: 1px solid #d4af37;
+            box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .number {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ffbf00;
+            text-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
+            line-height: 1;
+        }
+
+        .zero-danger {
+            color: #ff3131 !important;
+            text-shadow: 0 0 20px rgba(255, 49, 49, 0.8) !important;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #a67c52;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 8px;
+            display: block;
+        }
+
+        #daily-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(212, 175, 55, 0.5);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .quote-header {
+            display: block;
+            font-size: 0.9rem;
+            color: #ffbf00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        #daily-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            color: #d4af37;
+            margin: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 5px; right: 10px;
+            cursor: pointer; color: #a67c52; font-size: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .gate-container { padding: 3rem 1.5rem; }
+            .roman-number { font-size: 3rem; }
+            h1 { font-size: 1.5rem; }
+            .number { font-size: 2.2rem; }
+            .time-box { min-width: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gate-container">
+        <span class="roman-number">XIV</span>
+        <h1 id="title">Pápai kocsmatúra</h1>
+        
+        <div id="countdown">
+            <div class="time-box"><span class="number" id="days">00</span><span class="label">Nap</span></div>
+            <div class="time-box"><span class="number" id="hours">00</span><span class="label">Óra</span></div>
+            <div class="time-box"><span class="number" id="minutes">00</span><span class="label">Perc</span></div>
+            <div class="time-box"><span class="number" id="seconds">00</span><span class="label">Másodperc</span></div>
+        </div>
+
+        <div id="daily-box">
+            <span class="close-btn" onclick="document.getElementById('daily-box').style.display='none'">×</span>
+            <span class="quote-header">A nap bölcsessége:</span>
+            <p id="daily-text">Betöltés...</p>
+        </div>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const targetDate = new Date("Jun 12, 2026 12:00:00").getTime();
+
+        const quotes = [
+            "A sör nem válasz, de a kérdést elfelejtheted tőle.",
+            "Vízből van a legtöbb, de sörből a legjobb.",
+            "Egy sör nem sör. Két sör fél sör. Négy sör egy sör...",
+            "A sport egészség. Én például sörre gyúrok.",
+            "A jó kocsmatúrához nem térkép kell, hanem iránytű a pult felé.",
+            "Pápa vár minket, a májunk pedig fél tőlünk.",
+            "Sörre bor mindenkor, borra sör meggyötör.",
+            "Nem vagyok részeg, csak horizontálisan pihenek a pultnál.",
+            "Minden út a kocsmába vezet, de a hazautat még keressük.",
+            "Minden el nem fogyasztott sör egy elvesztegetett lehetőség."
+        ];
+
+        function setDailyQuote() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            const quoteIndex = dayOfYear % quotes.length;
+            document.getElementById("daily-text").innerText = quotes[quoteIndex];
+        }
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const timeData = [
+                { id: "days", value: days }, { id: "hours", value: hours },
+                { id: "minutes", value: minutes }, { id: "seconds", value: seconds }
+            ];
+
+            let allHigherUnitsZero = true;
+            timeData.forEach(item => {
+                const element = document.getElementById(item.id);
+                element.innerText = Math.max(0, item.value).toString().padStart(2, '0');
+                if (item.value > 0) allHigherUnitsZero = false;
+                
+                if (item.value <= 0 && allHigherUnitsZero) {
+                    element.classList.add("zero-danger");
+                } else {
+                    element.classList.remove("zero-danger");
+                }
+            });
+
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("daily-box").style.display = "none";
+                document.getElementById("title").innerText = "NYITVA!";
+                document.getElementById("message").innerText = "🍺 INDULÁS! 🍺";
+            }
+        };
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        setDailyQuote();
+    </script>
+</body>
+</html>
