@@ -20,86 +20,90 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* KOCSMAKAPU DIZÁJN */
+        /* KOCSMAKAPU DIZÁJN - Arany középút méret */
         .gate-container {
             position: relative;
             z-index: 10;
             background: linear-gradient(rgba(43, 22, 10, 0.98), rgba(20, 10, 5, 0.98));
-            padding: 5rem 4rem;
+            padding: 5rem 4rem; 
             width: 90%;
-            max-width: 700px;
-            /* Boltíves kapu forma */
+            max-width: 850px;
             border-radius: 50% 50% 15px 15px / 25% 25% 15px 15px;
             border: 12px solid #3d2314;
-            outline: 4px solid #d4af37;
+            outline: 5px solid #d4af37;
             box-shadow: 
                 0 0 100px rgba(0, 0, 0, 1), 
-                inset 0 0 60px rgba(0, 0, 0, 0.9),
-                0 20px 50px rgba(0,0,0,0.8);
+                inset 0 0 70px rgba(0, 0, 0, 0.9),
+                0 25px 50px rgba(0,0,0,0.8);
             text-align: center;
+            box-sizing: border-box;
         }
 
-        /* Kapu "pántok" (kovácsoltvas hatás) */
+        /* Kapu "pántok" */
         .gate-container::before, .gate-container::after {
             content: "";
             position: absolute;
-            height: 40px;
-            width: 100px;
+            height: 45px; 
+            width: 110px; 
             background: #1a1a1a;
-            border: 2px solid #333;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            border: 3px solid #333;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
         }
-        .gate-container::before { top: 40%; left: -30px; border-radius: 5px 0 0 5px; }
-        .gate-container::after { top: 40%; right: -30px; border-radius: 0 5px 5px 0; }
+        .gate-container::before { top: 40%; left: -32px; border-radius: 6px 0 0 6px; }
+        .gate-container::after { top: 40%; right: -32px; border-radius: 0 6px 6px 0; }
 
         .roman-number {
             display: block;
-            font-size: 5rem;
+            font-size: 6rem;
             color: #d4af37;
-            text-shadow: 3px 6px 10px #000;
-            margin-bottom: -10px;
+            text-shadow: 4px 6px 12px #000;
+            margin-bottom: -15px;
             font-weight: bold;
-            letter-spacing: 15px;
+            letter-spacing: 16px;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 2rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: #f3e5ab;
-            text-shadow: 2px 2px 4px #000;
-            border-bottom: 2px solid #d4af37;
+            text-shadow: 3px 3px 6px #000;
+            border-bottom: 3px solid #d4af37;
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
         #countdown {
             display: flex;
-            gap: 15px;
+            gap: 15px; 
             justify-content: center;
             flex-wrap: wrap;
             margin: 2rem 0;
+            width: 100%;
         }
 
         .time-box {
             background: rgba(0, 0, 0, 0.6);
-            padding: 20px 10px;
+            padding: 20px 10px; 
             border-radius: 10px;
-            min-width: 110px;
-            border: 1px solid #d4af37;
+            /* A flex: 1 1 0px rákényszeríti, hogy mind a 4 doboz PONTOSAN egyforma széles legyen */
+            flex: 1 1 0px; 
+            max-width: 150px; /* Hogy szép arányos kockák maradjanak */
+            border: 2px solid #d4af37;
             box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.2);
+            box-sizing: border-box;
         }
 
         .number {
             display: block;
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: bold;
             color: #ffbf00;
-            text-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
+            text-shadow: 0 0 12px rgba(255, 191, 0, 0.5);
             line-height: 1;
         }
 
@@ -109,27 +113,27 @@
         }
 
         .label {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             color: #a67c52;
             font-weight: bold;
-            letter-spacing: 1px;
-            margin-top: 8px;
+            letter-spacing: 2px;
+            margin-top: 10px;
             display: block;
         }
 
         #daily-box {
-            margin-top: 30px;
+            margin-top: 35px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed rgba(212, 175, 55, 0.5);
-            border-radius: 8px;
+            border: 2px dashed rgba(212, 175, 55, 0.5);
+            border-radius: 10px;
             position: relative;
         }
 
         .quote-header {
             display: block;
-            font-size: 0.9rem;
+            font-size: 1rem; 
             color: #ffbf00;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -140,24 +144,69 @@
 
         #daily-text {
             font-style: italic;
-            font-size: 1.2rem;
-            line-height: 1.4;
+            font-size: 1.4rem;
+            line-height: 1.5;
             color: #d4af37;
             margin: 0;
         }
 
         .close-btn {
             position: absolute;
-            top: 5px; right: 10px;
-            cursor: pointer; color: #a67c52; font-size: 1.5rem;
+            top: 5px; right: 15px;
+            cursor: pointer; color: #a67c52; font-size: 1.8rem;
         }
 
-        @media (max-width: 600px) {
-            .gate-container { padding: 3rem 1.5rem; }
-            .roman-number { font-size: 3rem; }
-            h1 { font-size: 1.5rem; }
+        /* MOBIL NÉZET - Változatlanul tökéletes marad */
+        @media (max-width: 650px) {
+            .gate-container { 
+                padding: 3rem 1.5rem; 
+                width: 92%;
+                border-width: 8px; 
+                outline-width: 2px;
+            }
+            
+            .gate-container::before, .gate-container::after {
+                height: 25px;
+                width: 40px;
+                border-width: 1px;
+            }
+            .gate-container::before { left: -15px; }
+            .gate-container::after { right: -15px; }
+
+            .roman-number { 
+                font-size: 3rem; 
+                letter-spacing: 5px; 
+                margin-bottom: -5px;
+            }
+            
+            h1 { 
+                font-size: 1.5rem; 
+                margin-bottom: 1.5rem;
+            }
+            
+            #countdown {
+                gap: 10px;
+            }
+
+            .time-box { 
+                /* Mobilon felveszi a 2x2-es rácsot a 4x1 helyett */
+                flex: 1 1 calc(50% - 15px); 
+                max-width: 100%;
+                padding: 15px 5px;
+            }
+            
             .number { font-size: 2.2rem; }
-            .time-box { min-width: 70px; }
+            .label { font-size: 0.65rem; margin-top: 8px; }
+            
+            .quote-header { font-size: 0.8rem; }
+            #daily-text { font-size: 1rem; }
+        }
+        
+        @media (max-width: 380px) {
+            .gate-container { padding: 2rem 1rem; }
+            h1 { font-size: 1.2rem; }
+            .number { font-size: 1.8rem; }
+            .time-box { flex: 1 1 calc(50% - 10px); }
         }
     </style>
 </head>
@@ -196,7 +245,59 @@
             "Sörre bor mindenkor, borra sör meggyötör.",
             "Nem vagyok részeg, csak horizontálisan pihenek a pultnál.",
             "Minden út a kocsmába vezet, de a hazautat még keressük.",
-            "Minden el nem fogyasztott sör egy elvesztegetett lehetőség."
+            "Minden el nem fogyasztott sör egy elvesztegetett lehetőség.",
+            "A sörben az a legjobb, hogy akkor is jó, ha nem jó.",
+            "Pápán nem eltévedünk, hanem új kocsmákat fedezünk fel.",
+            "Az orvosom azt mondta, figyeljek a folyadékbevitelre. Egészségetekre!",
+            "Nem azért iszom, hogy elfelejtselek, hanem hogy kétszer lássalak.",
+            "A sör hidratál... a lelkemnek legalábbis biztosan.",
+            "A jó barát segít költözni. Az igaz barát segít hazatalálni a kocsmatúra után.",
+            "A pult a legbiztosabb pont a változó világban.",
+            "Egy korsó sör után mindenki egy kicsit pápai polgárnak érzi magát.",
+            "A másnaposság a tegnapi buli kamata.",
+            "Sör nélkül lehet élni, de minek?",
+            "A sörfolt a ruhán nem kosz, hanem kitüntetés.",
+            "Aki nem issza a sört, az nem is tudja, mit veszít... mi viszont tudjuk.",
+            "Pápán a szél is a pult felé fúj.",
+            "Nem részeg vagyok, csak tesztelem a gravitációt.",
+            "A sörhöz nem kell diploma, csak egy jó csukló.",
+            "Az élet túl rövid ahhoz, hogy rossz sört igyunk.",
+            "A sör hűtve jó, a barátság fűtve.",
+            "Két sör között a legrövidebb út egy feles.",
+            "A pultos az egyetlen pszichológus, aki itallal gyógyít.",
+            "Vannak napok, amikor a víz egyszerűen nem elég.",
+            "A sör nem hizlal, csak önbizalmat ad a hasadnak.",
+            "Nem a sör a sok, hanem a lábam lett hirtelen puha.",
+            "A sörben benne van minden, amire egy pápai estéhez szükség van.",
+            "Inni vagy nem inni? Nem is kérdés.",
+            "A sör megmenti a napot, a pálinka meg az egész hetet.",
+            "A kocsmatúra nem sprint, hanem maraton. Oszd be az erőd!",
+            "Egy sör még belefér, mondta mindenki, aki aztán reggelig maradt.",
+            "A sör habja a boldogság sapkája.",
+            "Pápa utcáin az ember sosem szomjas, csak épp úton van a következő helyre.",
+            "A sörözés társasjáték, ahol mindenki nyer.",
+            "A sör az a folyadék, ami összehozza az embereket.",
+            "Hétfőn sör, kedden sör... és a többi napot is megoldjuk valahogy.",
+            "Ha a sör elfogy, a barátság marad... de inkább ne fogyjon el.",
+            "A kocsma az a hely, ahol a történetek kezdődnek.",
+            "Aki korán kel, az hamarabb ér a pultoz.",
+            "Sör, sör, sör... a többi csak részletkérdés.",
+            "A sör nem kérdez, a sör megért.",
+            "Pápai éjszakák, sosem felejtjük... ha emlékeznénk rájuk.",
+            "A sör az emberiség legnagyobb találmánya. A kerék is jó, de sörrel jobb.",
+            "Nem a kocsma a messze, hanem a hazaút hosszú.",
+            "Minden pohár sör egy kis vakáció.",
+            "A sör segít, hogy ne vegyük túl komolyan az életet.",
+            "Pápán a vendégszeretetet korsókban mérik.",
+            "Együtt ittunk, együtt dőlünk ki.",
+            "A sör az egyetlen dolog, amiből a 'még egyet' mindig jó ötletnek tűnik.",
+            "A sör nem luxus, hanem létszükséglet a túrához.",
+            "Ha szomjas vagy, már elkéstél. Igyál előre!",
+            "A sörözés nem bűn, hanem kultúra.",
+            "A pápai kocsmatúra a legjobb módja a városnézésnek.",
+            "A sör a hab a tortán, csak torta nélkül.",
+            "Vigyázat! A sörfogyasztás spontán énekléshez vezethet.",
+            "Sörben az igazság, borban a vigasz, pálinkában a bátorság."
         ];
 
         function setDailyQuote() {
@@ -239,6 +340,12 @@
                 document.getElementById("daily-box").style.display = "none";
                 document.getElementById("title").innerText = "NYITVA!";
                 document.getElementById("message").innerText = "🍺 INDULÁS! 🍺";
+                
+                const msgEl = document.getElementById("message");
+                msgEl.style.fontSize = window.innerWidth > 650 ? "4rem" : "3rem"; 
+                msgEl.style.color = "#ffbf00";
+                msgEl.style.fontWeight = "bold";
+                msgEl.style.textShadow = "0 0 25px #ffbf00";
             }
         };
 
